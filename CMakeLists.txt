@@ -7,4 +7,4 @@ set(root ${CMAKE_CURRENT_SOURCE_DIR})
 include(${root}/library/library.cmake)
 include(${root}/app/app.cmake)
 
-message(STATUS "${LIBRARY_API_INCLUDE}")
+message(STATUS "Include dirs: ${LIBRARY_API_INCLUDE}")

@@ -8,4 +8,7 @@ set(lib_sources
   )
 
 include_directories(BEFORE SYSTEM ${LIBRARY_API_INCLUDE})  
-add_library(LIBS ${lib_sources})
+set(LIBS BORACK_LIB)
+add_library(${LIBS} SHARED ${lib_sources})
+
+message(STATUS "Libs: ${LIBS}")

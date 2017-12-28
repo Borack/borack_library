@@ -1,3 +1,12 @@
 #include <api.hpp>
 
-int main(void) { return 0; }
+#include <iostream>
+
+int main(void)
+{
+    float result = API::sumOfTwoNumbers(3.1f, 4.0f);
+
+    std::cout << result << std::endl;
+
+    return 0;
+}
