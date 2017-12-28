@@ -1,0 +1,3 @@
+This folder contains all the files for the library.
+
+The only public api is declared in the include folder, private header files are meant to be in the src folder.
