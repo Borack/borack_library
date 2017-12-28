@@ -12,11 +12,10 @@ int main(void)
     void *handle;
     std::function<float(float, float)> sum;
     handle = dlopen("libBORACK_LIB.dylib", RTLD_LAZY);
-    sum = (float (*)(float, float))dlsym(handle, "sumOfTwoNumbers");
+    sum = reinterpret_cast<float (*)(float, float)>(dlsym(handle, "sumOfTwoNumbers"));
 
     float result = sum(3.1f, 4.0f);
     //float result = API::sumOfTwoNumbers(3.1f, 4.0f);
-
     std::cout << result << std::endl;
 
     return 0;
