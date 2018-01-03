@@ -14,7 +14,7 @@ void sort(std::vector<double> &vec)
         while (j > 0 && (vec[j - 1] > vec[j]))
         {
             std::swap(vec[j], vec[j - 1]);
-            j = i - 1;
+            j = j - 1;
         }
         i++;
     }

@@ -32,7 +32,8 @@ int main(void)
     std::srand(0); // set seed
     std::vector<type> toBeSorted(nElements);
     std::generate(toBeSorted.begin(), toBeSorted.end(), std::rand);
-
+    const auto toBeSortedOriginal = toBeSorted;
+    // insertion sort
     {
         std::function<void(std::vector<double> &)> sort;
         handle = dlopen("libINSERTION_SORT.dylib", RTLD_LAZY);
@@ -41,11 +42,31 @@ int main(void)
         std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
         sort(toBeSorted);
         std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-        std::cout << "Sorting took "
+        std::cout << "Sorting with insert sort took "
                   << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
                   << "us.\n";
 
         dlclose(handle);
+        std::cout << "5th element: " << toBeSorted[4] << std::endl;
+        std::cout << "6th element: " << toBeSorted[5] << std::endl;
+    }
+    // quicksort
+    {
+        toBeSorted = toBeSortedOriginal;
+        std::function<void(std::vector<double> &)> sort;
+        handle = dlopen("libQUICK_SORT.dylib", RTLD_LAZY);
+        sort = reinterpret_cast<void (*)(std::vector<double> &)>(dlsym(handle, "sort"));
+
+        std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+        sort(toBeSorted);
+        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+        std::cout << "Sorting with quick sort took "
+                  << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
+                  << "us.\n";
+
+        dlclose(handle);
+        std::cout << "5th element: " << toBeSorted[4] << std::endl;
+        std::cout << "6th element: " << toBeSorted[5] << std::endl;
     }
     return 0;
 }

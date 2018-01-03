@@ -16,8 +16,13 @@ set(insertion_sort
   )
 add_library(${INSERTION_SORT} SHARED ${insertion_sort})
 
+set(QUICK_SORT QUICK_SORT)
+set(quick_sort
+  ${LIB_DIR}/src/quick_sort.cpp
+  )
+add_library(${QUICK_SORT} SHARED ${quick_sort})
 
 
-list(APPEND LIBS ${CALCULATOR} ${INSERTION_SORT})
+list(APPEND LIBS ${CALCULATOR} ${INSERTION_SORT} ${QUICK_SORT})
 
 message(STATUS "Libs: ${LIBS}")
