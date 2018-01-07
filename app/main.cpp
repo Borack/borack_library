@@ -68,5 +68,13 @@ int main(void)
         std::cout << "5th element: " << toBeSorted[4] << std::endl;
         std::cout << "6th element: " << toBeSorted[5] << std::endl;
     }
+
+
+
+    // data structures
+    auto redBlackTree = API::data_structures::RedBlackTree();
+    std::vector<int> test= {1,2,3};
+    API::data_structures::BinaryTree<int> a(test);
+
     return 0;
 }
